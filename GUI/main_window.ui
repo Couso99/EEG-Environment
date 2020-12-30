@@ -72,6 +72,13 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="loadFileButton">
+        <property name="text">
+         <string>Load file</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="signInButton">
         <property name="text">
          <string>Sign in</string>

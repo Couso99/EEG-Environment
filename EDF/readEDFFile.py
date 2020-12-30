@@ -18,17 +18,13 @@ import matplotlib.pyplot as plt
 def read_signal_data(edf_file):
     f = pyedflib.edfreader.EdfReader(edf_file)
     signals_number = f.signals_in_file
+    duration = f.file_duration
     buffers = np.empty((signals_number, np.amax(f.getNSamples())))
     for channel in range(signals_number):
         buffers[channel] = np.array(f.readSignal(channel))
     f._close()
 
-
-    # for channel, i in enumerate(range(1,1+signals_number)):
-    #     plt.subplot(signals_number,1,i)
-    #     plt.plot(buffers[channel])
-    # plt.show()
-    return buffers
+    return buffers, duration
 
 #
 # if __name__ == '__main__':

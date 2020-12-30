@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets, QtCore, QtGui, uic
 from GUI.subject_widget import SubjectWidget
 from GUI.select_ports import PortSelection
 from GUI.ui_main_windsow import Ui_MainWindow
+from GUI.plot_edf_historic import HistoricPlot
 
 #Ui_MainWindow, _ = uic.loadUiType("GUI/main_window.ui")
 
@@ -20,6 +21,7 @@ class EnvironmentWindow(QtWidgets.QMainWindow):
 
         self.ui.addButton.clicked.connect(self.add_subject)
         self.ui.deleteButton.clicked.connect(self.remove_subject)
+        self.ui.loadFileButton.clicked.connect(self.plot_historic_edf)
 
     def add_subject(self):
         self.portSelection = PortSelection(active_ports=self.active_ports)
@@ -48,6 +50,14 @@ class EnvironmentWindow(QtWidgets.QMainWindow):
             self.subjects[index].openbci_disconnect()
             del self.active_ports[index]
             del self.subjects[index]
+
+    def plot_historic_edf(self):
+        options = QtWidgets.QFileDialog.Options()
+        options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        fileType = "EDF(+) Files (*.edf)"
+        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self.gui.MainWindow,"QFileDialog.getOpenFileName()","",fileType, options=options)
+        self.plotWindow = HistoricPlot(fileName)
+        self.plotWindow.show()
 
     def close_all(self):
         for i, port in enumerate(self.active_ports):

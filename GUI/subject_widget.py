@@ -8,7 +8,7 @@ from COM.open_bci_GCPDS import OpenBCIBoard as openbci
 from GUI.ui_subject_widget import Ui_Form
 #Ui_SubjectWidget, _ = uic.loadUiType("GUI/subject_widget.ui")
 
-class SubjectWidget(QtWidgets.QWidget, Ui_SubjectWidget):
+class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
     def __init__(self, port):
         super().__init__()
         self.ui = Ui_Form()

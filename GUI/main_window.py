@@ -55,7 +55,7 @@ class EnvironmentWindow(QtWidgets.QMainWindow):
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
         fileType = "EDF(+) Files (*.edf)"
-        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self.gui.MainWindow,"QFileDialog.getOpenFileName()","",fileType, options=options)
+        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()","",fileType, options=options)
         self.plotWindow = HistoricPlot(fileName)
         self.plotWindow.show()
 

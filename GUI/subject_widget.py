@@ -14,7 +14,7 @@ class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.port = port
-        self.portLabel.setText(f"Canal {openbci.get_channel_from_port(port)}")
+        self.ui.portLabel.setText(f"Canal {openbci.get_channel_from_port(port)}")
 
         self.CHANNELS_PER_GRAPH = 2
 
@@ -73,8 +73,8 @@ class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
 
         self.set_plot()
 
-        self.openbci_conn.gui.styleQwtPlot('EEG one channel', self.channelPlotGraph)
-        self.channelPlotGraph.setBackground((250,250,250))
+        self.openbci_conn.gui.styleQwtPlot('EEG one channel', self.ui.channelPlotGraph)
+        self.ui.channelPlotGraph.setBackground((250,250,250))
 
     def set_plot(self, reset=False):
         channels = self.openbci_conn.constants.CHANNEL_IDS

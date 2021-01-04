@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtCore, QtGui, uic
 
 from GUI.subject_widget import SubjectWidget
 from GUI.select_ports import PortSelection
-from GUI.ui_main_windsow import Ui_MainWindow
+from GUI.ui_main_window import Ui_MainWindow
 from GUI.plot_edf_historic import HistoricPlot
 
 #Ui_MainWindow, _ = uic.loadUiType("GUI/main_window.ui")

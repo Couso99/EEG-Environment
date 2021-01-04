@@ -5,7 +5,7 @@ from pyqtgraph.Qt import QtGui, QtCore
 import numpy as np
 import pyqtgraph as pg
 from EDF.readEDFFile import read_signal_data
-from ui_plots import Ui_MainWindow
+from GUI.ui_historic_plots import Ui_MainWindow
 
 class HistoricPlot(QtWidgets.QMainWindow):
     def __init__(self, edf_fname, parent=None):

@@ -5,8 +5,6 @@ from GUI.select_ports import PortSelection
 from GUI.ui_main_window import Ui_MainWindow
 from GUI.plot_edf_historic import HistoricPlot
 
-#Ui_MainWindow, _ = uic.loadUiType("GUI/main_window.ui")
-
 class EnvironmentWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -39,7 +37,7 @@ class EnvironmentWindow(QtWidgets.QMainWindow):
             self.ui.allSubjectsLayout.addWidget(self.subjects[-1])
 
     def remove_subject(self):
-        self.portSelection = PortSelection(portAndChannelTuples=(self.active_ports, [widget.portLabel.text() for widget in self.subjects]))
+        self.portSelection = PortSelection(portAndChannelTuples=(self.active_ports, [widget.ui.portLabel.text() for widget in self.subjects]))
         ports = []
         if self.portSelection.exec_():
             ports = self.portSelection.selected_ports
@@ -53,11 +51,12 @@ class EnvironmentWindow(QtWidgets.QMainWindow):
 
     def plot_historic_edf(self):
         options = QtWidgets.QFileDialog.Options()
-        options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        #options |= QtWidgets.QFileDialog.DontUseNativeDialog
         fileType = "EDF(+) Files (*.edf)"
-        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()","",fileType, options=options)
-        self.plotWindow = HistoricPlot(fileName)
-        self.plotWindow.show()
+        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Select EDF(+) file","",fileType, options=options)
+        if fileName:
+            self.plotWindow = HistoricPlot(fileName)
+            self.plotWindow.show()
 
     def close_all(self):
         for i, port in enumerate(self.active_ports):

@@ -95,8 +95,8 @@ class OpenBCI_connection:
     # Guardar archivo
     def saveFileDialog(self):
         options = QtWidgets.QFileDialog.Options()
-        options |= QtWidgets.QFileDialog.DontUseNativeDialog
-        fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self.gui.MainWindow,"QFileDialog.getSaveFileName()","","EDF Files (*.edf)", options=options)
+        #options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self.gui.MainWindow,"Save EDF(+) file","","EDF Files (*.edf)", options=options)
         if fileName:
             self.constants.PATH = fileName
             self.constants.ispath = True
@@ -113,7 +113,7 @@ class OpenBCI_connection:
     # Cargar archivo
     def openFileNameDialog(self, btn):
         options = QtWidgets.QFileDialog.Options()
-        options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        #options |= QtWidgets.QFileDialog.DontUseNativeDialog
         fileType = "PYTHON Files (*.py)"
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self.gui.MainWindow,"QFileDialog.getOpenFileName()","",fileType, options=options)
         #----------------- LOAD AND EXECUTE THE MODULE -----#

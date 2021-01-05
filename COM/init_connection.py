@@ -1,7 +1,5 @@
 # IMPORTAR MÓDULOS
 # Módulos Propios
-from COM.trigger_server import trigger_server                         #Recibir y retransmitir datos via TCP/IP
-from DYNAMIC import dynamic as Dyn_import                               #Cargar archivos --> OpenFile
 from GENERAL.data_manager_openBCI import data_manager_openBCI        #Aplicación de los filtros a las medidas
 from LOGGING import logger as log                                       #Modifica el log --> OpenBCI (driver)
 from GENERAL.ring_buffer import RingBuffer as buffer                 #Gestiona el buffer de datos de los sensores
@@ -38,9 +36,6 @@ class OpenBCI_connection:
         self.queue_even = Queue()
         self.queue_odd = Queue()
 
-        ##### TRIGGER SERVER ############
-        self.trigger_server = trigger_server(self.constants.ADDRESS, self.constants.PORT)
-
         # Iniciar buffer donde se guardan los datos de los sensores
         self.buffer = buffer(self.constants)
         self.buffer.emitter.connect(self.slots.trigger)     ##### Ejecuta el evento para los callbacks??
@@ -54,7 +49,7 @@ class OpenBCI_connection:
 
         # Iniciar Aplicación GUI: envía la aplicación completa y una lista de callbacks
         # CALLBACKS: conjunto de acciones ante las que debe dar una respuesta = conexión, adquisición, actualización, guardar o cargar/abrir
-        self.gui = GUI(self, callbacks = [self.connection_manager, self.recording_manager.test_acquisition, self.recording_manager.update_state, self.saveFileDialog, self.openFileNameDialog])
+        self.gui = GUI(self, callbacks = [self.connection_manager, self.recording_manager.test_acquisition, self.recording_manager.update_state, self.saveFileDialog])
 
         ########## LOGGER ####################
         self.log = log.logger(self.gui)         #Introducir la aplicación GUI previamente creada
@@ -109,13 +104,3 @@ class OpenBCI_connection:
     def stop_recording(self):
         self.recording_manager.update_state("stop")
         self.constants.ispath = False
-
-
-    # Cargar archivo
-    def openFileNameDialog(self, btn):
-        options = QtWidgets.QFileDialog.Options()
-        #options |= QtWidgets.QFileDialog.DontUseNativeDialog
-        fileType = "PYTHON Files (*.py)"
-        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self.gui.MainWindow,"QFileDialog.getOpenFileName()","",fileType, options=options)
-        #----------------- LOAD AND EXECUTE THE MODULE -----#
-        Dyn_import.load_module(fileName, self)

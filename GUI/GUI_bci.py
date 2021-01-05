@@ -54,7 +54,7 @@ class GUI():
         # Si se pulsa el botón de START, se ejecuta la función del segundo elemento de la lista de Callbacks = TestAdquisition (RECORDING)
         self.bci_graph.btn_start.clicked.connect(callbacks[1])
         # Si se pulsa el botón de TRIGGER, se ejecuta la función de trigger con el tercer elemento de la lista de Callbacks = UpdateState (RECORDING)
-        self.bci_graph.btn_trigger.clicked.connect(lambda: self.launch_trigger_server(callbacks[2]))#callbacks[2]('start'))#
+        #self.bci_graph.btn_trigger.clicked.connect(lambda: callbacks[2]('start'))
         # Si se pulsa el botón de USER, se ejecuta la función del cuarto elemento de la lista de Callbacks = SaveFileDialog (MAIN)
         self.bci_graph.btn_user.clicked.connect(callbacks[3])
         # Si se pulsa el botón de LOADSCRIPT, se ejecuta la función del último elemento de la lista de Callbaks = OpenFileNameDialog (MAIN)
@@ -131,16 +131,6 @@ class GUI():
         for i in range(self.app.constants.CHANNELS):
             self.curves_EEG_short[i].setData(sample[i, :])
 
-    # Gestor de Eventos (TRIGGER)
-    def launch_trigger_server(self, callback):                  #Recibe el UpdateState (RECORDING)
-        #Si hay un socket creado, lo cierra
-        if self.app.trigger_server.activated:
-            self.app.trigger_server.close_socket()
-        #Si no hay un socket creado, lo crea, inicia la comunicación y envía el callback
-        else:
-            self.app.trigger_server.create_socket()
-            self.app.trigger_server.start()
-            self.app.trigger_server.new_COM1.connect(callback)
 
     # Acciones de los botones
     # Seleccionar canal del espectrograma

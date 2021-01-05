@@ -36,13 +36,6 @@ class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
         self.openbci_conn = OpenBCI_connection(self.port)
 
     def start_stop_recording(self):
-        '''self.openbci_conn.gui.launch_trigger_server(self.openbci_conn.recording_manager.update_state)
-        if not self.app.trigger_server.activated:
-            self.saveRecordButton.setEnabled(True)
-            self.recordButton.setText("Stop")
-        else:
-            self.saveRecordButton.setEnabled(False)
-            self.recordButton.setText("Record")'''
         self.openbci_conn.start_record()
         self.ui.recordButton.setText("Stop")
 

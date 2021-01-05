@@ -68,7 +68,6 @@ class data_manager_openBCI(Thread):         #Recibe la aplicación
         self.muttex.acquire()                                               #Se cierra el mutex
         filtered = self.filter_bank.pre_process(self.app.buffer.get())      #Se aplica el prefiltrado a los datos del buffer
         self.muttex.release()                                               #Se abre el mutex
-        self.append_to_store_data(filtered)
         return filtered                                                     #Retorna la muestra filtrada
 
     # Extraer y filtrar una muestra pequeña
@@ -106,16 +105,10 @@ class data_manager_openBCI(Thread):         #Recibe la aplicación
         sample_data = self.get_short_sample(self.app.constants.METHOD)          #Se extrae una muestra pequeña con el método indicado
         self.all_data_store = np.hstack((self.all_data_store, sample_data))     #Añade la nueva muestra a la matriz ya existente del banco
         self.app.constants.running_window += 1
-
-    def append_to_store_data(self, data):
-        self.all_data_store = np.hstack((self.all_data_store, data))     #Añade la nueva muestra a la matriz ya existente del banco
-        print(self.all_data_store.shape)
-        if len(self.all_data_store[0]) >= 120000:
+        #print(self.all_data_store.shape)
+        if self.app.constants.ispath: # Append to file only if it is recording
             self.app.recording_manager.append_data_to_file()
-            self.all_data_store = np.empty(shape=(self.app.constants.CHANNELS, 0))
-        #    self.app.recording_manager.append_data_to_file()
-        #    self.app.recording_manager.io.append_to_file( self.app.eeg_dmg.all_data_store )
-        #    self.all_data_store = np.empty(shape=(self.app.constants.CHANNELS, 0))
+        self.all_data_store = np.empty(shape=(self.app.constants.CHANNELS, 0))
 
     # Vaciar banco de datos
     def reset_data_store(self):

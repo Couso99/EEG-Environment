@@ -108,6 +108,7 @@ class OpenBCI_connection:
 
     def stop_recording(self):
         self.recording_manager.update_state("stop")
+        self.constants.ispath = False
 
 
     # Cargar archivo

@@ -2,14 +2,15 @@ from PyQt5 import QtWidgets, QtCore, QtGui, uic
 
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci
 
-
+from GUI.ui_select_ports import Ui_Dialog
 Ui_PortSelection, _ = uic.loadUiType("GUI/select_ports_dialog.ui")
 
 class PortSelection(QtWidgets.QDialog, Ui_PortSelection):
     def __init__(self, parent=None, portAndChannelTuples=None, active_ports=None):
         super().__init__(parent)
-        Ui_PortSelection.__init__(self)
-        self.setupUi(self)
+
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
 
         self.checkboxes = []
         self.selected_ports = []
@@ -28,7 +29,7 @@ class PortSelection(QtWidgets.QDialog, Ui_PortSelection):
             self.available_ports_channel = portAndChannelTuples[1]# for portAndChannelTuple in portAndChannelTuples]
             self.make_checkboxes(True)
 
-        self.okCancelButtonBox.accepted.connect(self.update_selected_ports)
+        self.ui.okCancelButtonBox.accepted.connect(self.update_selected_ports)
 
     def update_available_ports(self):
         self.available_ports = self.get_ports()
@@ -40,13 +41,13 @@ class PortSelection(QtWidgets.QDialog, Ui_PortSelection):
         for i, port in enumerate(self.available_ports):
             if port in self.active_ports:
                 continue
-            self.checkboxes.append(QtWidgets.QCheckBox(self.portsGroupBox))
+            self.checkboxes.append(QtWidgets.QCheckBox(self.ui.portsGroupBox))
             if not isSerialConnected:
                 channel_number = openbci.get_channel_from_port(port)
             else:
                 channel_number = self.available_ports_channel[i]
             self.checkboxes[-1].setText(f"Canal {channel_number}")
-            self.portsVBoxLayout.addWidget(self.checkboxes[-1])
+            self.ui.portsVBoxLayout.addWidget(self.checkboxes[-1])
 
     def update_selected_ports(self):
         for i, checkbox in enumerate(self.checkboxes):

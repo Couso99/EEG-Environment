@@ -6,6 +6,7 @@ from COM.init_connection import OpenBCI_connection
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci
 
 from GUI.ui_subject_widget import Ui_Form
+from GUI.channel_settings import SettingsWindow
 #Ui_SubjectWidget, _ = uic.loadUiType("GUI/subject_widget.ui")
 
 class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
@@ -26,6 +27,7 @@ class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
         self.ui.recordButton.clicked.connect(self.start_stop_recording)
         self.ui.startButton.clicked.connect(self.send_start)
         self.ui.pauseButton.clicked.connect(self.send_stop)
+        self.ui.settingsButton.clicked.connect(self.open_settings)
 
     def openbci_disconnect(self):
         self.openbci_conn.terminate()
@@ -38,7 +40,6 @@ class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
     def start_stop_recording(self):
         self.openbci_conn.start_record()
         self.ui.recordButton.setText("Stop")
-
 
     def send_start(self):
         if not self.openbci_conn.recording_manager.streaming.value:
@@ -53,6 +54,9 @@ class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
             self.ui.startButton.setEnabled(True)
             self.ui.pauseButton.setEnabled(False)
             self.eeg_channel_timer.stop()
+
+    def open_settings(self):
+        self.settingsWindow = SettingsWindow(self)
 
     def init_channel_plot(self):
         self.channelCurve = []

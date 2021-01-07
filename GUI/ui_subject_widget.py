@@ -68,9 +68,9 @@ class Ui_Form(object):
         self.horizontalLayout_19.addWidget(self.portLabel)
         spacerItem = QtWidgets.QSpacerItem(40, 1, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_19.addItem(spacerItem)
-        self.pushButton = QtWidgets.QPushButton(self.frame)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_19.addWidget(self.pushButton)
+        self.settingsButton = QtWidgets.QPushButton(self.frame)
+        self.settingsButton.setObjectName("settingsButton")
+        self.horizontalLayout_19.addWidget(self.settingsButton)
         self.verticalLayout_14.addLayout(self.horizontalLayout_19)
         self.horizontalLayout_2.addLayout(self.verticalLayout_14)
         self.horizontalLayout.addWidget(self.frame)
@@ -89,6 +89,6 @@ class Ui_Form(object):
         self.startButton.setText(_translate("Form", "Start"))
         self.pauseButton.setText(_translate("Form", "Pause"))
         self.portLabel.setText(_translate("Form", "portLabel"))
-        self.pushButton.setText(_translate("Form", "Settings"))
+        self.settingsButton.setText(_translate("Form", "Settings"))
 
 from pyqtgraph import PlotWidget

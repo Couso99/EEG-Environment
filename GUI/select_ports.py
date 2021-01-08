@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtCore, QtGui, uic
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci
 

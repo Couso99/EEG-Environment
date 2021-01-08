@@ -1,6 +1,5 @@
-from PyQt5 import QtWidgets, QtCore, QtGui, uic
+from PyQt5 import QtWidgets, QtCore, QtGui
 import pyqtgraph as pg
-#import sip
 
 from COM.init_connection import OpenBCI_connection
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci

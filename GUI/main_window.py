@@ -1,5 +1,4 @@
-from PyQt5 import QtWidgets, QtCore, QtGui, uic
-
+from PyQt5 import QtWidgets, QtCore, QtGui
 from GUI.subject_widget import SubjectWidget
 from GUI.select_ports import PortSelection
 from GUI.ui_main_window import Ui_EEGEnvironmentWindow

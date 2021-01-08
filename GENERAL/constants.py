@@ -16,9 +16,6 @@ class constants():
     def __init__(self, seconds=6, sample_rate=250, baud=115200, channels=8, ndims=8, signal='eeg', lowcut=1, highcut=45, order=5):
 
         # Definición de Constantes
-        self.ADDRESS = '10.38.0.107'#'10.38.8.71'#'192.168.1.104'                                              # DIRECCIÓN IP
-        #self.ADDRESS = '10.1.25.82'
-        self.PORT = 10000                                                           # PUERTO
         self.SECONDS = seconds                                                      # Segundos
         self.SAMPLE_RATE = sample_rate                                              # Frecuencia de Muestreo
         self.NOTCH = 50                                                             # Frecuencia del filtro Notch

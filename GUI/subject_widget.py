@@ -57,6 +57,7 @@ class SubjectWidget(QtWidgets.QWidget):#, Ui_SubjectWidget):
 
     def open_settings(self):
         self.settingsWindow = SettingsWindow(self)
+        self.settingsWindow.show()
 
     def init_channel_plot(self):
         self.channelCurve = []

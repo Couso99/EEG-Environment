@@ -3,9 +3,8 @@ from PyQt5 import QtWidgets, QtCore, QtGui, uic
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci
 
 from GUI.ui_select_ports import Ui_Dialog
-Ui_PortSelection, _ = uic.loadUiType("GUI/select_ports_dialog.ui")
 
-class PortSelection(QtWidgets.QDialog, Ui_PortSelection):
+class PortSelection(QtWidgets.QDialog):
     def __init__(self, parent=None, portAndChannelTuples=None, active_ports=None):
         super().__init__(parent)
 

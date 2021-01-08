@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtCore
 
 from GUI.ui_set_channel import Ui_Dialog
 
-class SetChannelDialog(QtWidgets.QWidget):
+class SetChannelDialog(QtWidgets.QDialog):
     def __init__(self, parent, title, callback):
         super().__init__()
         self.ui = Ui_Dialog()
@@ -10,7 +10,7 @@ class SetChannelDialog(QtWidgets.QWidget):
 
         self.ui.channelSpinBox.setValue(parent.actualChannel)
         self.callback = callback
-        self.buttonBox.accepted.connect(self.set_new_channel)
+        self.ui.buttonBox.accepted.connect(self.set_new_channel)
 
     def set_new_channel(self):
         self.new_channel = self.ui.channelSpinBox.value()

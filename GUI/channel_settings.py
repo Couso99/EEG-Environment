@@ -9,6 +9,7 @@ class SettingsWindow(QtWidgets.QWidget):
         self.parent = parent
         self.ui = Ui_Form()
         self.ui.setupUi(self)
+        self.actualChannel = self.parent.openbci_conn.driver.get_channel()
 
         self.ui.getChannelButton.clicked.connect(self.get_channel)
         self.ui.setChannelButton.clicked.connect(self.set_channel)
@@ -27,13 +28,13 @@ class SettingsWindow(QtWidgets.QWidget):
             self.ui.channelLabel.setText("Cython board is not paired")
         QtCore.QTimer.singleShot(5000, lambda: self.ui.channelLabel.setText(""))
 
-    def set_channel_general(title, callback):
+    def set_channel_general(self, title, callback):
         self.newChannelDialog = SetChannelDialog(self, "Set channel", self.parent.openbci_conn.driver.set_channel)
         if self.newChannelDialog.exec_():
             self.ui.channelLabel.setText(f"Channel changed succesfully: {self.newChannelDialog.new_channel}")
         else:
             self.ui.channelLabel.setText("Channel was not changed")
-        QtCore.QTimer.singleShot(5000, lambda: self.ui.channelLabel.setText(""))    
+        QtCore.QTimer.singleShot(5000, lambda: self.ui.channelLabel.setText(""))
 
     def set_channel(self):
         self.set_channel_general("Set channel", self.parent.openbci_conn.driver.set_channel)

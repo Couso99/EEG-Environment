@@ -36,8 +36,9 @@ class recording_manager:
             self.app.gui.eeg_short_timer.stop()
             self.app.gui.freq_timer.stop()
 
-    def append_data_to_file(self):
-        self.io.append_to_file(self.app.eeg_dmg.all_data_store)
+    def append_data_to_file(self, n_items):
+        print(self.app.eeg_dmg.all_data_store[:,-n_items:].shape)
+        self.io.append_to_file(self.app.eeg_dmg.all_data_store[:,-n_items:])
 
     # Actualizar estado
     def update_state(self, action):           # Recibe una acción

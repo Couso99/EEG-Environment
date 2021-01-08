@@ -107,8 +107,8 @@ class data_manager_openBCI(Thread):         #Recibe la aplicación
         self.app.constants.running_window += 1
         #print(self.all_data_store.shape)
         if self.app.constants.ispath: # Append to file only if it is recording
-            self.app.recording_manager.append_data_to_file()
-        self.all_data_store = np.empty(shape=(self.app.constants.CHANNELS, 0))
+            self.app.recording_manager.append_data_to_file(self.app.constants.WINDOW)
+        self.all_data_store = self.all_data_store[:,-1500:]#np.empty(shape=(self.app.constants.CHANNELS, 0))
 
     # Vaciar banco de datos
     def reset_data_store(self):

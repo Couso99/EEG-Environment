@@ -43,9 +43,10 @@ class PortSelection(QtWidgets.QDialog):
             self.checkboxes.append(QtWidgets.QCheckBox(self.ui.portsGroupBox))
             if not isSerialConnected:
                 channel_number = openbci.get_channel_from_port(port)
+                self.checkboxes[-1].setText(f"Canal {channel_number}")
             else:
                 channel_number = self.available_ports_channel[i]
-            self.checkboxes[-1].setText(f"Canal {channel_number}")
+                self.checkboxes[-1].setText(f"{channel_number}")
             self.ui.portsVBoxLayout.addWidget(self.checkboxes[-1])
 
     def update_selected_ports(self):

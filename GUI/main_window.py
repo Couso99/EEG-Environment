@@ -2,14 +2,14 @@ from PyQt5 import QtWidgets, QtCore, QtGui, uic
 
 from GUI.subject_widget import SubjectWidget
 from GUI.select_ports import PortSelection
-from GUI.ui_main_window import Ui_MainWindow
+from GUI.ui_main_window import Ui_EEGEnvironmentWindow
 from GUI.plot_edf_historic import HistoricPlot
 
 class EnvironmentWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_EEGEnvironmentWindow()
         self.ui.setupUi(self)
 
         self.show()

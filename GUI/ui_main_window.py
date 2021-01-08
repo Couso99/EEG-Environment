@@ -11,19 +11,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.setEnabled(True)
-        MainWindow.resize(1250, 628)
+class Ui_EEGEnvironmentWindow(object):
+    def setupUi(self, EEGEnvironmentWindow):
+        EEGEnvironmentWindow.setObjectName("EEGEnvironmentWindow")
+        EEGEnvironmentWindow.setEnabled(True)
+        EEGEnvironmentWindow.resize(1250, 720)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
-        MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QtCore.QSize(1250, 0))
-        MainWindow.setMaximumSize(QtCore.QSize(1250, 720))
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        sizePolicy.setHeightForWidth(EEGEnvironmentWindow.sizePolicy().hasHeightForWidth())
+        EEGEnvironmentWindow.setSizePolicy(sizePolicy)
+        EEGEnvironmentWindow.setMinimumSize(QtCore.QSize(1250, 0))
+        EEGEnvironmentWindow.setMaximumSize(QtCore.QSize(1250, 720))
+        self.centralwidget = QtWidgets.QWidget(EEGEnvironmentWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
@@ -56,22 +56,22 @@ class Ui_MainWindow(object):
         self.allSubjectsLayout.setContentsMargins(0, 0, 0, 0)
         self.allSubjectsLayout.setObjectName("allSubjectsLayout")
         self.gridLayout.addWidget(self.groupBox, 0, 0, 1, 1)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        EEGEnvironmentWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(EEGEnvironmentWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1250, 22))
         self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        EEGEnvironmentWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(EEGEnvironmentWindow)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        EEGEnvironmentWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(EEGEnvironmentWindow)
+        QtCore.QMetaObject.connectSlotsByName(EEGEnvironmentWindow)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, EEGEnvironmentWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.addButton.setText(_translate("MainWindow", "+"))
-        self.deleteButton.setText(_translate("MainWindow", "-"))
-        self.loadFileButton.setText(_translate("MainWindow", "Load file"))
-        self.signInButton.setText(_translate("MainWindow", "Sign in"))
+        EEGEnvironmentWindow.setWindowTitle(_translate("EEGEnvironmentWindow", "EEG Environment"))
+        self.addButton.setText(_translate("EEGEnvironmentWindow", "+"))
+        self.deleteButton.setText(_translate("EEGEnvironmentWindow", "-"))
+        self.loadFileButton.setText(_translate("EEGEnvironmentWindow", "Load file"))
+        self.signInButton.setText(_translate("EEGEnvironmentWindow", "Sign in"))

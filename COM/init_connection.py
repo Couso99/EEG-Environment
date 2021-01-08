@@ -91,7 +91,7 @@ class OpenBCI_connection:
     # Guardar archivo
     def save_fname_and_start_record(self):
         options = QtWidgets.QFileDialog.Options()
-        #options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        options |= QtWidgets.QFileDialog.DontUseNativeDialog
         fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self.gui.MainWindow,"Save EDF(+) file","","EDF Files (*.edf)", options=options)
         if fileName:
             self.constants.PATH = fileName

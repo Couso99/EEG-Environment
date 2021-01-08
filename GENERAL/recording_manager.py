@@ -22,6 +22,7 @@ class recording_manager:
         # Se utiliza para iniciar la conexión con el driver y, por consiguiente, el proceso
         if not self.streaming.value:
             self.app.driver.send_start()
+            self.app.parent.send_start()
             self.app.gui.eeg_timer.start(self.app.constants.refresh_rate)
             self.app.gui.eeg_short_timer.start(self.app.constants.short_refresh_rate)
             self.app.gui.freq_timer.start(self.app.constants.refresh_rate)
@@ -30,6 +31,7 @@ class recording_manager:
         else:
             # stop driver and gui updating
             self.app.driver.send_stop()
+            self.app.parent.send_stop()
             self.app.gui.eeg_timer.stop()
             self.app.gui.eeg_short_timer.stop()
             self.app.gui.freq_timer.stop()
@@ -54,6 +56,7 @@ class recording_manager:
             # Se inicia el driver y las temporizaciones de las gráficas del GUI
             self.app.eeg_dmg.reset_data_store()
             self.app.driver.send_start()
+            self.app.parent.start_recording()
             self.app.gui.eeg_timer.start(self.app.constants.refresh_rate)
             self.app.gui.eeg_short_timer.start(self.app.constants.short_refresh_rate)
             self.app.gui.freq_timer.start(self.app.constants.refresh_rate)
@@ -66,6 +69,7 @@ class recording_manager:
             self.io.online_annotation(action)
             # Se para el driver y la actualización del GUI
             self.app.driver.send_stop()
+            self.app.parent.stop_recording()
             self.app.gui.eeg_timer.stop()
             self.app.gui.eeg_short_timer.stop()
             self.app.gui.freq_timer.stop()

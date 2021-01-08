@@ -51,7 +51,7 @@ class EnvironmentWindow(QtWidgets.QMainWindow):
 
     def plot_historic_edf(self):
         options = QtWidgets.QFileDialog.Options()
-        #options |= QtWidgets.QFileDialog.DontUseNativeDialog
+        options |= QtWidgets.QFileDialog.DontUseNativeDialog
         fileType = "EDF(+) Files (*.edf)"
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Select EDF(+) file","",fileType, options=options)
         if fileName:

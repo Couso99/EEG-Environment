@@ -21,7 +21,7 @@ class io_manager():
     # Crear un archivo EDF
     def create_file(self):
         # Se crea un nuevo fichero indicando el nombre = dirección + número de la prueba
-        self.edf.new_file(self.app.constants.PATH + '_trial_' + str(self.app.constants.running_trial) + '.edf')
+        self.edf.new_file(self.app.constants.PATH+'.edf')# + '_trial_' + str(self.app.constants.running_trial) + '.edf')
         # Actualiza el texto del logger con la dirección indicando que se ha creado
         self.app.log.update_text('* -- USER ' + self.app.constants.PATH + ' CREATED -- *')
 

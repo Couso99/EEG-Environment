@@ -16,10 +16,11 @@ from multiprocessing import Queue, Value
 
 
 class OpenBCI_connection:
-    def __init__(self, port):
+    def __init__(self, parent, port):
         ############# LOGIC CONTROL ##################
         self.isconnected = Value('b', 0)                    #Devuelve una "Envoltura de Sincronización" de tipo byte con valor 1
 
+        self.parent = parent
         self.port = port
 
         # Iniciar Constantes
@@ -49,7 +50,7 @@ class OpenBCI_connection:
 
         # Iniciar Aplicación GUI: envía la aplicación completa y una lista de callbacks
         # CALLBACKS: conjunto de acciones ante las que debe dar una respuesta = conexión, adquisición, actualización, guardar o cargar/abrir
-        self.gui = GUI(self, callbacks = [self.connection_manager, self.recording_manager.test_acquisition, self.recording_manager.update_state, self.saveFileDialog])
+        self.gui = GUI(self, callbacks = [self.connection_manager, self.recording_manager.test_acquisition, self.recording_manager.update_state, self.save_fname_and_start_record])
 
         ########## LOGGER ####################
         self.log = log.logger(self.gui)         #Introducir la aplicación GUI previamente creada
@@ -88,7 +89,7 @@ class OpenBCI_connection:
         #self.app.gui.freq_timer.start(self.app.constants.refresh_rate)
 
     # Guardar archivo
-    def saveFileDialog(self):
+    def save_fname_and_start_record(self):
         options = QtWidgets.QFileDialog.Options()
         #options |= QtWidgets.QFileDialog.DontUseNativeDialog
         fileName, _ = QtWidgets.QFileDialog.getSaveFileName(self.gui.MainWindow,"Save EDF(+) file","","EDF Files (*.edf)", options=options)
@@ -102,5 +103,6 @@ class OpenBCI_connection:
             #self.writter.close_file()
 
     def stop_recording(self):
-        self.recording_manager.update_state("stop")
-        self.constants.ispath = False
+        if self.constants.ispath:
+            self.constants.ispath = False
+            self.recording_manager.update_state("stop")

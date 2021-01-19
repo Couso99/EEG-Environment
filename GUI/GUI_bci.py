@@ -43,7 +43,7 @@ class GUI():
         self.initFrequencyComboBox()
         self.initFilteringComboBox()
         self.initSpectrogramComboBox()
-        self.load_style()
+        #self.load_style()
         self.MainWindow.hide()              #Ejecución de la pantalla de visualización
         # Activa el antialiasing para gráficas más limpias/precisas
         pg.setConfigOptions(antialias=True)
@@ -156,7 +156,7 @@ class GUI():
         self.initShortTermViewCurves()
         self.initFrequencyView()
         self.set_plots(reset=True)
-        self.load_style()
+        #self.load_style()
 
         if self.app.recording_manager.streaming.value:
             self.eeg_short_timer.start(self.app.constants.short_refresh_rate)
@@ -268,7 +268,7 @@ class GUI():
         self.freq_timer.stop()
         self.eeg_short_timer.stop()
     # Aplicar formato a las gráficas
-    def load_style(self):
+    '''def load_style(self):
         self.styleQwtPlot('EEG', self.bci_graph.EEG_plot)
         self.styleQwtPlot('Frequency', self.bci_graph.Frequency_plot)
         self.styleQwtPlot('Emotion estimation', self.bci_graph.Emotions_plot)
@@ -279,7 +279,7 @@ class GUI():
         #font.setPixelSize(24)
         #title = QwtText(name)
         #title.setFont(font)
-        #elem.setTitle(title)
+        #elem.setTitle(title)'''
 
     def initChannelComboBox(self):
         self.bci_graph.channels_comboBox.addItems(['8', '16'])

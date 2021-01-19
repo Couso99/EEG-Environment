@@ -79,7 +79,7 @@ class SubjectWidget(QtWidgets.QWidget):
 
         self.set_plot()
 
-        self.openbci_conn.gui.styleQwtPlot('EEG one channel', self.ui.channelPlotGraph)
+        #self.openbci_conn.gui.styleQwtPlot('EEG one channel', self.ui.channelPlotGraph)
         self.ui.channelPlotGraph.setBackground((250,250,250))
 
     def set_plot(self):

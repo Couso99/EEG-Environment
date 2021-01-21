@@ -1,7 +1,7 @@
+# Author: Pablo Couso (cousop@gmail.com)
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci
-
 from GUI.ui_select_ports import Ui_Dialog
 
 class PortSelection(QtWidgets.QDialog):

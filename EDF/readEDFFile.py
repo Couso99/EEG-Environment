@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Author: Pablo Couso (cousop@gmail.com)
 
 from __future__ import division, print_function, absolute_import
 

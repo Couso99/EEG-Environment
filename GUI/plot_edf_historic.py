@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+# Author: Pablo Couso (cousop@gmail.com)
 from PyQt5 import QtWidgets
 from pyqtgraph.Qt import QtGui, QtCore
 import numpy as np

@@ -4,6 +4,7 @@
 @email: %(mikel1982mail@gmail.com)
 @institution: %(Dpto. de Inteligencia Artificial, Universidad Nacional de Educación a Distancia (UNED))
 @DOI: 10.5281/zenodo.3759306
+Modified by: Pablo Couso (cousop@gmail.com)
 """
 
 import sys  #Path

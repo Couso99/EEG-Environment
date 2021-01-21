@@ -1,8 +1,8 @@
+# Author: Pablo Couso (cousop@gmail.com)
 from PyQt5 import QtWidgets
 import sys
 
 from GUI.main_window import EnvironmentWindow
-
 
 class EnvironmentApp(QtWidgets.QApplication):
     # Inicialización

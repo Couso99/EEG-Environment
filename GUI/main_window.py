@@ -1,3 +1,4 @@
+# Author: Pablo Couso (cousop@gmail.com)
 from PyQt5 import QtWidgets, QtCore, QtGui
 from GUI.subject_widget import SubjectWidget
 from GUI.select_ports import PortSelection

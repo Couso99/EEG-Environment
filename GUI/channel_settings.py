@@ -1,3 +1,4 @@
+# Author: Pablo Couso (cousop@gmail.com)
 from PyQt5 import QtWidgets, QtCore
 
 from GUI.ui_channel_settings import Ui_Form

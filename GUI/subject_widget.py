@@ -1,3 +1,4 @@
+# Author: Pablo Couso (cousop@gmail.com)
 from PyQt5 import QtWidgets, QtCore, QtGui
 import pyqtgraph as pg
 

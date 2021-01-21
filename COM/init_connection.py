@@ -1,3 +1,4 @@
+# Modified by: Pablo Couso (cousop@gmail.com)
 # IMPORTAR MÓDULOS
 # Módulos Propios
 from GENERAL.data_manager_openBCI import data_manager_openBCI        #Aplicación de los filtros a las medidas

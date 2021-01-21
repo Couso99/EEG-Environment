@@ -36,7 +36,7 @@ class recording_manager:
             self.app.gui.eeg_short_timer.stop()
             self.app.gui.freq_timer.stop()
 
-    def append_data_to_file(self, n_items):
+    def append_data_to_file(self, n_items=1500):
         print(self.app.eeg_dmg.all_data_store[:,-n_items:].shape)
         self.io.append_to_file(self.app.eeg_dmg.all_data_store[:,-n_items:])
 

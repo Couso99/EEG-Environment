@@ -5,12 +5,16 @@ from GUI.select_ports import PortSelection
 from GUI.ui_main_window import Ui_EEGEnvironmentWindow
 from GUI.plot_edf_historic import HistoricPlot
 
+from BBDD.BBDD import BaseDatosPruebasRealizadas as BaseDatos
+
 class EnvironmentWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
         self.ui = Ui_EEGEnvironmentWindow()
         self.ui.setupUi(self)
+
+        self.db = BaseDatos("./BBDD/pruebas_realizadas.db")
 
         self.show()
 
@@ -32,7 +36,7 @@ class EnvironmentWindow(QtWidgets.QMainWindow):
             if port in self.active_ports:
                 continue
             self.active_ports.append(port)
-            new_widget = SubjectWidget(port)
+            new_widget = SubjectWidget(self.db, port)
             self.subjects.append(new_widget)
             self.ui.allSubjectsLayout.addWidget(self.subjects[-1])
 

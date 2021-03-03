@@ -5,11 +5,13 @@ import pyqtgraph as pg
 from COM.init_connection import OpenBCI_connection
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci
 
-from GUI.ui_subject_widget import Ui_Form
 from GUI.channel_settings import SettingsWindow
+from GUI.subject_details import SubjectDetails
+from GUI.select_subject import SubjectSelection
+from GUI.ui_subject_widget import Ui_Form
 
 class SubjectWidget(QtWidgets.QWidget):
-    def __init__(self, port):
+    def __init__(self, db, port):
         super().__init__()
         self.ui = Ui_Form()
         self.ui.setupUi(self)
@@ -17,6 +19,9 @@ class SubjectWidget(QtWidgets.QWidget):
         self.ui.portLabel.setText(f"Canal {openbci.get_channel_from_port(port)}")
 
         self.CHANNELS_PER_GRAPH = 2
+
+        self.db = db
+        self.personID = None
 
         self.openbci_connect()
         self.init_channel_plot()
@@ -27,6 +32,7 @@ class SubjectWidget(QtWidgets.QWidget):
         self.ui.startButton.clicked.connect(self.send_start)
         self.ui.pauseButton.clicked.connect(self.send_stop)
         self.ui.settingsButton.clicked.connect(self.open_settings)
+        self.ui.detailsButton.clicked.connect(self.define_new_person)
 
     def openbci_disconnect(self):
         self.openbci_conn.terminate()
@@ -39,9 +45,10 @@ class SubjectWidget(QtWidgets.QWidget):
     def start_recording(self):
         if not self.openbci_conn.constants.ispath:
             self.openbci_conn.save_fname_and_start_record()
+        if self.openbci_conn.constants.ispath:
             self.send_start()
-        self.ui.recordButton.setEnabled(False)
-        self.ui.saveRecordButton.setEnabled(True)
+            self.ui.recordButton.setEnabled(False)
+            self.ui.saveRecordButton.setEnabled(True)
 
     def stop_recording(self):
         if self.openbci_conn.constants.ispath:
@@ -49,6 +56,13 @@ class SubjectWidget(QtWidgets.QWidget):
             self.send_stop()
         self.ui.recordButton.setEnabled(True)
         self.ui.saveRecordButton.setEnabled(False)
+        while not self.personID:
+            self.selectPerson = SubjectSelection(self.db)
+
+            if self.selectPerson.exec_():
+                personID = self.selectPerson.personID
+                self.personID = personID
+        self.db.new_session(self.personID, self.openbci_conn.constants.PATH)
 
     def send_start(self):
         if not self.openbci_conn.recording_manager.streaming.value:
@@ -67,6 +81,30 @@ class SubjectWidget(QtWidgets.QWidget):
     def open_settings(self):
         self.settingsWindow = SettingsWindow(self)
         self.settingsWindow.show()
+
+    def show_details(self):
+        detailsWindow = SubjectDetails(self)
+        detailsWindow.show()
+
+    def update_subject_label(self):
+        self.ui.subjectIdLabel.setText(self.personID)
+
+        
+"""
+    def define_person(self, personID):
+        self.personID = personID
+
+    def define_new_person(self):
+        self.newPerson = NewPerson()
+
+        if self.newPerson.exec_():
+            details = self.newPerson.details
+            edad = details[0]
+            sexo = details[1]
+
+            self.db.new_person(personID, edad, sexo)
+            self.define_person(personID)
+"""
 
     def init_channel_plot(self):
         self.channelCurve = []

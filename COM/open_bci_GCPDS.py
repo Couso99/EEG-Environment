@@ -381,7 +381,7 @@ class OpenBCIBoard(Process):
         #print("Serial established...")  # Actualiza el texto del logger indicando que se ha conectado al puerto
 
         time.sleep(1.5)  # Pausa de 2 segundos
-        if s.inWaiting():
+        '''if s.inWaiting():
             line = ''
             while '$$$' not in line: # Busca la secuencia de fin '$$$'.
                 byte = s.read()
@@ -390,7 +390,9 @@ class OpenBCIBoard(Process):
                 except:
                     pass
                     c = str(byte)
-                line += c
+                line += c'''
+
+        #print(line)
 
         s.write(bytearray([0xF0, 0x00]))
         time.sleep(0.5)

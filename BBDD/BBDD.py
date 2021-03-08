@@ -26,13 +26,13 @@ class BaseDatosPruebasRealizadas:
 
     def new_person(self, sujetoId, edad=None, sexo=None):
         self.c.execute(f'''INSERT INTO Sujetos (SujetoID, Edad, Sexo)
-                    VALUES ({str(sujetoId)},{'NULL' if edad==None else str(edad)},
-                    {'NULL' if sexo==None else sexo})''')
+                    VALUES ("{sujetoId}",{'NULL' if edad==None else str(edad)},
+                    "{'NULL' if sexo==None else sexo}")''')
         self.conn.commit()
         return
 
     def get_person_details(self, personID):
-        details = self.c.execute(f"SELECT * FROM Sujetos where SujetoID = {personID}").fetchone()
+        details = self.c.execute(f"SELECT * FROM Sujetos where SujetoID = '{personID}'").fetchone()
         return details
 
     def get_all_personId(self):
@@ -40,13 +40,13 @@ class BaseDatosPruebasRealizadas:
         return [personId_tuple[0] for personId_tuple in all_personId]
 
     def new_session(self, personID, edfFilePath, dateTime=str(datetime.now())):
-        self.c.execute(f"INSERT INTO PruebasRealizadas (SujetoID, PathArchivoEDF, FechaHora) VALUES ({personID},'{edfFilePath}','{dateTime}')")
+        self.c.execute(f"INSERT INTO PruebasRealizadas (SujetoID, PathArchivoEDF, FechaHora) VALUES ('{personID}','{edfFilePath}','{dateTime}')")
         self.conn.commit()
-        lastMovementID = self.c.execute("SELECT MovimientoID from Movimientos ORDER BY MovimientoID DESC").fetchone()[0]
+        lastMovementID = self.c.execute("SELECT PruebaRealizadaID from PruebasRealizadas ORDER BY PruebaRealizadaID DESC").fetchone()[0]
         return lastMovementID
 
     def get_last_movementId(self):
-        lastMovementID = self.c.execute("SELECT MovimientoID from Movimientos ORDER BY MovimientoID DESC").fetchone()[0]
+        lastMovementID = self.c.execute("SELECT PruebaRealizadaID from PruebasRealizadas ORDER BY PruebaRealizadaID DESC").fetchone()[0]
         return lastMovementID
 
     def new_session_details(self, sessionID, score, testID):

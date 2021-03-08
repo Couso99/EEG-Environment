@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 from COM.open_bci_GCPDS import OpenBCIBoard as openbci
-from GUI.ui_new_person import Ui_DetailsDialog
+from GUI.ui_new_person import Ui_NewPerson
 
 class NewPerson(QtWidgets.QDialog):
     def __init__(self, parent=None):
@@ -10,7 +10,7 @@ class NewPerson(QtWidgets.QDialog):
 
         self.setWindowTitle("New subject")
 
-        self.ui = Ui_DetailsDialog()
+        self.ui = Ui_NewPerson()
         self.ui.setupUi(self)
 
         self.details = []
@@ -24,7 +24,7 @@ class NewPerson(QtWidgets.QDialog):
         age = self.ui.ageSpinBox.value()
         self.details.append(age if age>=0 else None)
 
-        sex = self.ui.sexComboBox.current_text()
+        sex = self.ui.sexComboBox.currentText()
         if sex == "M" or sex == "F":
             self.details.append(sex)
         else:

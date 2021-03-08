@@ -32,7 +32,7 @@ class SubjectWidget(QtWidgets.QWidget):
         self.ui.startButton.clicked.connect(self.send_start)
         self.ui.pauseButton.clicked.connect(self.send_stop)
         self.ui.settingsButton.clicked.connect(self.open_settings)
-        self.ui.detailsButton.clicked.connect(self.define_new_person)
+        self.ui.detailsButton.clicked.connect(self.show_details)
 
     def openbci_disconnect(self):
         self.openbci_conn.terminate()
@@ -83,14 +83,14 @@ class SubjectWidget(QtWidgets.QWidget):
         self.settingsWindow.show()
 
     def show_details(self):
-        detailsWindow = SubjectDetails(self)
-        detailsWindow.show()
+        self.detailsWindow = SubjectDetails(self)
+        self.detailsWindow.show()
 
     def update_subject_label(self):
         self.ui.subjectIdLabel.setText(self.personID)
 
-        
-"""
+
+    """
     def define_person(self, personID):
         self.personID = personID
 
@@ -103,8 +103,7 @@ class SubjectWidget(QtWidgets.QWidget):
             sexo = details[1]
 
             self.db.new_person(personID, edad, sexo)
-            self.define_person(personID)
-"""
+            self.define_person(personID)"""
 
     def init_channel_plot(self):
         self.channelCurve = []

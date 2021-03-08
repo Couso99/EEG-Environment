@@ -2,7 +2,7 @@
 from PyQt5 import QtWidgets, QtCore
 
 from GUI.ui_select_subject import Ui_SubjectSelection
-from GUI.new_person import NewPerson
+from GUI.new_person_dialog import NewPerson
 
 class SubjectSelection(QtWidgets.QDialog):
     def __init__(self, db):#):
@@ -28,7 +28,7 @@ class SubjectSelection(QtWidgets.QDialog):
         self.ui.newSubjectButton.clicked.connect(self.define_new_person)
 
     def set_person(self):
-        self.personID = self.ui.subjectIdComboBox.current_text()
+        self.personID = self.ui.subjectIdComboBox.currentText()
 
     def define_new_person(self):
         self.newPerson = NewPerson()

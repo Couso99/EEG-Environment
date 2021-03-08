@@ -42,7 +42,14 @@
      <item>
       <widget class="QPushButton" name="definePersonButton">
        <property name="text">
-        <string>Define subject</string>
+        <string>Select subject</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>Ok</string>
        </property>
       </widget>
      </item>

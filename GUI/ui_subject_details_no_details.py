@@ -25,6 +25,9 @@ class Ui_NoDetails(object):
         self.definePersonButton = QtWidgets.QPushButton(NoDetails)
         self.definePersonButton.setObjectName("definePersonButton")
         self.horizontalLayout.addWidget(self.definePersonButton)
+        self.okButton = QtWidgets.QPushButton(NoDetails)
+        self.okButton.setObjectName("okButton")
+        self.horizontalLayout.addWidget(self.okButton)
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.retranslateUi(NoDetails)
@@ -34,5 +37,6 @@ class Ui_NoDetails(object):
         _translate = QtCore.QCoreApplication.translate
         NoDetails.setWindowTitle(_translate("NoDetails", "Details"))
         self.label.setText(_translate("NoDetails", "No subject selected yet!"))
-        self.definePersonButton.setText(_translate("NoDetails", "Define subject"))
+        self.definePersonButton.setText(_translate("NoDetails", "Select subject"))
+        self.okButton.setText(_translate("NoDetails", "Ok"))
 
